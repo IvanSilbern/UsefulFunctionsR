@@ -46,3 +46,11 @@ computePercent <- function(data, percent){
   apply(data, 2, function(x) quantile(x, probs = percent/100, na.rm = T))
   
 }
+
+lm_eqn <- function(m){
+  eq <- substitute(italic(y) == b %.% italic(x)* + italic(a)*","~~italic(r)^2~"="~r2, 
+                   list(b  = format(coef(m)[1], digits = 3, nsmall = 3),
+                        a  = format(coef(m)[2], digits = 3, nsmall = 3),
+                        r2 = format(summary(m)$r.squared,   digits = 3, nsmall = 3)))
+  as.character(as.expression(eq))                 
+}
