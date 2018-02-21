@@ -54,3 +54,9 @@ lm_eqn <- function(m){
                         r2 = format(summary(m)$r.squared,   digits = 3, nsmall = 3)))
   as.character(as.expression(eq))                 
 }
+
+write.delim <- function(...){
+  
+  write.table(sep = "\t", dec = ".", row.names = F,  quote = F, ...)
+  
+}        
