@@ -1,4 +1,4 @@
-ReadValue <- function(prompt_text = "", prompt_suffix = getOption("prompt"), coerce_to="character")
+readValue <- function(prompt_text = "", prompt_suffix = getOption("prompt"), coerce_to="character")
   # Function reads input from user
   #
   # Args:
