@@ -1,0 +1,75 @@
+loadPackage <- function(x, ...){
+  
+  installed     <- x[ x %in% installed.packages()]
+  not.installed <- x[!x %in% installed.packages()]
+  
+  
+  if(length(not.installed) > 0){
+    
+    message("Following packages are not found ", not.installed)
+    question <- "Should all (a) some (s) none (n) of the missing packages be installed (a/s/n)?"
+    answer   <- tolower(readValue(promt_text = question))
+    
+    if(grepl('\"', answer) | grepl("\'", answer)){
+    
+      answer   <- gsub('\"', "", answer)
+      answer   <- gsub("\'", "", answer)
+      
+    }
+    
+    stopifnot(answer %in% c("a", "s", "n"))
+    
+    if(answer == "n"){
+      
+      if(length(installed) > 0){
+        
+        message("Load installed packages ", paste(installed, collapse = ", "))
+        lapply(installed, require, ...)  
+        
+      } else {
+        
+        message("no other packages will be loaded")
+        
+      }
+      
+    } else if(answer = "n")
+    
+    
+    
+  }
+    
+  
+  
+  
+  
+  if(length(installed) > 0){
+    
+    message("Load installed packages ", x[x %in% installed.packages()])
+    lapply(x[x %in% installed.packages()], require)  
+    
+  }
+  
+  
+  if(length(x[!x %in]))
+  message("Following packages are not found ", x[!x %in% installed.packages()])
+  
+  
+}
+
+lapply(a, require)
+
+  
+  
+  if(length(installed) > 0){
+    
+    message("Load installed packages ", x[x %in% installed.packages()])
+    lapply(x[x %in% installed.packages()], require)  
+    
+  }
+  
+  
+  if(length(x[!x %in]))
+  message("Following packages are not found ", x[!x %in% installed.packages()])
+  
+  
+}
