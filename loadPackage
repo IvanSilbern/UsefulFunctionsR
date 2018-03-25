@@ -3,6 +3,7 @@ loadPackage <- function(x, ...){
   installed     <- x[ x %in% installed.packages()]
   not.installed <- x[!x %in% installed.packages()]
   
+  answer <- "n"
   
   if(length(not.installed) > 0){
     
@@ -32,22 +33,29 @@ loadPackage <- function(x, ...){
         
       }
       
-    } else if(answer = "n")
+    } else if(answer = "a") {
+      
+      cran <- not.installed %in% available.packages()[, "Package"]
+      
+      try(install.packages(not.installed[cran]))
+      
+      if(length(not.installed[!cran]) > 0 & "BiocInstaller" %in% installed.packages) {
+        
+        message("Following packages will be installed from Bioconductor ",
+                paste(not.installed[!cran], collapse = ", "))
+        
+        require(BiocInstaller)
+        
+        
+        
+      }
+      
+    }
     
     
     
   }
     
-  
-  
-  
-  
-  if(length(installed) > 0){
-    
-    message("Load installed packages ", x[x %in% installed.packages()])
-    lapply(x[x %in% installed.packages()], require)  
-    
-  }
   
   
   if(length(x[!x %in]))
@@ -57,19 +65,3 @@ loadPackage <- function(x, ...){
 }
 
 lapply(a, require)
-
-  
-  
-  if(length(installed) > 0){
-    
-    message("Load installed packages ", x[x %in% installed.packages()])
-    lapply(x[x %in% installed.packages()], require)  
-    
-  }
-  
-  
-  if(length(x[!x %in]))
-  message("Following packages are not found ", x[!x %in% installed.packages()])
-  
-  
-}
