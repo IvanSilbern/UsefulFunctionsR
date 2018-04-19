@@ -25,7 +25,7 @@ splitName <- function(x, return.position = 1, split = "", fixed = T) {
   
 }
 
-loadData <- function(path, name, ...){
+loadDelim <- function(path, name, ...){
   
   df <- read.delim(path, stringsAsFactors = F, ...)
   cat(path, "table dimensions", dim(df))
