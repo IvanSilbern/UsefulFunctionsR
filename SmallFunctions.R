@@ -25,7 +25,7 @@ splitName <- function(x, return.position = 1, split = "", fixed = T) {
   
 }
 
-loadDelim <- function(path, name, ...){
+loadDelim <- function(path, ...){
   
   if(!"data.table" %in% installed.packages()) stop("Install the 'data.table' package first!")
   df <- data.table::fread(path, stringsAsFactors = F, ...)
