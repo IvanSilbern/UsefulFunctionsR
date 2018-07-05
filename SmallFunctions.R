@@ -30,6 +30,7 @@ loadDelim <- function(path, ...){
   if(!"data.table" %in% installed.packages()) stop("Install the 'data.table' package first!")
   df <- data.table::fread(path, stringsAsFactors = F, ...)
   df <- as.data.frame(df)
+  names(df) <- gsub(" ", ".", names(df))
   cat(path, "table dimensions", dim(df))
   df
   
